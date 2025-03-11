@@ -1,10 +1,12 @@
 import 'dart:convert';
 
-// Funció per convertir JSON a JokeModel
-JokeModel jokeModelFromJson(String str) => JokeModel.fromJson(json.decode(str));
+// Funció per convertir JSON a una llista de JokeModel
+List<JokeModel> jokeModelFromJson(String str) =>
+    List<JokeModel>.from(json.decode(str).map((x) => JokeModel.fromJson(x)));
 
 // Funció per convertir JokeModel a JSON
-String jokeModelToJson(JokeModel data) => json.encode(data.toJson());
+String jokeModelToJson(List<JokeModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class JokeModel {
   final String setup;
